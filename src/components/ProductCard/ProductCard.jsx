@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Countdown from 'react-countdown';
+import './style.css';
 
 const AllProducts = styled.div`
   display: flex;
@@ -54,7 +58,7 @@ const Contador = styled.p`
 
 const Button = styled.button`
   background-color: #4caf50;
-  width: 50%;
+  width: 110%;
   padding: 2px;
   border-radius: 20px;
   max-width: 120px;
@@ -73,13 +77,34 @@ const ProductCard = () => {
     });
   };
 
+  function numeroRandom() {
+    return Math.random() * (180000 - 60000) + 60000;
+  }
+
   useEffect(() => {
     getProducts();
-  });
+  }, []);
 
   return (
     <AllProducts>
       {products.map((product) => {
+        const tiempo = numeroRandom();
+        const renderer = ({ completed }) => {
+          if (completed) {
+            // Render a completed state
+            return (
+              <Link className="btn" to="">
+                <Button>Go To Detail</Button>
+              </Link>
+            );
+          }
+          // Render a countdown
+          return (
+            <Link className="btn" to={`/products/${product.id}`}>
+              <Button>Go To Detail</Button>
+            </Link>
+          );
+        };
         return (
           <SingleProduct key={product.id}>
             <Img src={product.image} />
@@ -87,8 +112,10 @@ const ProductCard = () => {
               Id: {product.id} | Producto: {product.title}
             </Title>
             <Bottom>
-              <Contador>Tiempo</Contador>
-              <Button>Go To Detail</Button>
+              <Contador>
+                <Countdown date={Date.now() + tiempo} />
+              </Contador>
+              <Countdown date={Date.now() + tiempo} renderer={renderer} />,
             </Bottom>
           </SingleProduct>
         );

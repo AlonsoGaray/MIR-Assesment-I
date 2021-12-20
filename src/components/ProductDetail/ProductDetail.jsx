@@ -1,40 +1,40 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const ProductDetail = () => {
-  const [products, setProducts] = useState([]);
+const Img = styled.img`
+  width: 110px;
+  height: 110px;
+`;
 
-  const getProducts = async () => {
-    await axios.get('https://fakestoreapi.com/products').then((res) => {
+const Title = styled.h5`
+  color: black;
+`;
+
+const ProductDetail = () => {
+  const [product, setProduct] = useState([]);
+
+  const { id } = useParams();
+
+  const getProduct = async () => {
+    await axios.get(`https://fakestoreapi.com/products/${id}`).then((res) => {
       const { data } = res;
-      setTimeout(() => {
-        setProducts(data);
-      }, 1000);
+      setProduct(data);
     });
   };
 
   useEffect(() => {
-    getProducts();
-  });
+    getProduct();
+  }, []);
 
   return (
-    <AllProducts>
-      {products.map((product) => {
-        return (
-          <SingleProduct key={product.id}>
-            <Img src={product.image} />
-            <Title>
-              Id: {product.id} | Producto: {product.title}
-            </Title>
-            <Bottom>
-              <Contador>Tiempo</Contador>
-              <Button>Go To Detail</Button>
-            </Bottom>
-          </SingleProduct>
-        );
-      })}
-    </AllProducts>
+    <>
+      <Img src={product.image} />
+      <Title>
+        Id: {product.id} | Producto: {product.title}
+      </Title>
+    </>
   );
 };
 
