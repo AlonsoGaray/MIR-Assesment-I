@@ -1,0 +1,11 @@
+a {
+  margin: 1em;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+}
+
+a:hover {
+  font-weight: bold;
+  transform: skew(-10deg);
+}
