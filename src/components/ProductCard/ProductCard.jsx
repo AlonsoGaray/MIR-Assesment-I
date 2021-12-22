@@ -9,6 +9,7 @@ import './style.css';
 const AllProducts = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   border-radius: 20px;
   max-width: 1400px;
@@ -102,42 +103,58 @@ const ProductCard = () => {
     <>
       <Title>Productos</Title>
       <AllProducts>
-        {products.map((product) => {
-          const tiempo = numeroRandom();
-          const renderer = ({ minutes, seconds, completed }) => {
-            if (completed) {
-              return <Text bgc="#F05454">Tiempo agotado</Text>;
-            }
+        {products.length > 0 ? (
+          products.map((product) => {
+            const tiempo = numeroRandom();
+            const renderer = ({ minutes, seconds, completed }) => {
+              if (completed) {
+                return <Text bgc="#F05454">Tiempo agotado</Text>;
+              }
+              return (
+                <>
+                  <Contador>
+                    <Timer>
+                      {minutes > 9 ? minutes : `0${minutes}`}:
+                      {seconds > 9 ? seconds : `0${seconds}`}
+                    </Timer>
+                  </Contador>
+                  <Link
+                    className="btn"
+                    to={`/detalle/${product.id}`}
+                    key={product.id}
+                  >
+                    <Button id={product.id}>Go To Detail</Button>
+                  </Link>
+                </>
+              );
+            };
             return (
-              <>
-                <Contador>
-                  <Timer>
-                    {minutes > 9 ? minutes : `0${minutes}`}:
-                    {seconds > 9 ? seconds : `0${seconds}`}
-                  </Timer>
-                </Contador>
-                <Link
-                  className="btn"
-                  to={`/products/${product.id}`}
-                  key={product.id}
-                >
-                  <Button id={product.id}>Go To Detail</Button>
-                </Link>
-              </>
+              <SingleProduct key={product.id}>
+                <Img src={product.image} />
+                <Text>
+                  Id: {product.id} | Producto: {product.title}
+                </Text>
+                <Bottom>
+                  <Countdown date={Date.now() + tiempo} renderer={renderer} />
+                </Bottom>
+              </SingleProduct>
             );
-          };
-          return (
-            <SingleProduct key={product.id}>
-              <Img src={product.image} />
-              <Text>
-                Id: {product.id} | Producto: {product.title}
-              </Text>
-              <Bottom>
-                <Countdown date={Date.now() + tiempo} renderer={renderer} />
-              </Bottom>
-            </SingleProduct>
-          );
-        })}
+          })
+        ) : (
+          <>
+            <h1>Loading</h1>
+            <div className="lds-roller">
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </>
+        )}
       </AllProducts>
     </>
   );

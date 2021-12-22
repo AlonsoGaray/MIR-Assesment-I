@@ -14,10 +14,6 @@ const Logo = styled.div`
   width: 20%;
 `;
 
-const Texto = styled.h2`
-  margin: 1em;
-`;
-
 const Links = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -28,7 +24,9 @@ const Header = () => {
   return (
     <Container>
       <Logo>
-        <Texto>Fake Store Garay</Texto>
+        <Link className="nav" to="/">
+          Fake Store Garay
+        </Link>
       </Logo>
       <Links>
         <Link className="nav" to="/">
