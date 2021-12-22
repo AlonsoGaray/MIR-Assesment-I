@@ -1,20 +1,6 @@
-import styled from 'styled-components';
-
-const Info = styled.p`
-  color: black;
-`;
+import About from '../components/About/About';
 
 const App = () => {
-  return (
-    <Info>
-      Nombre: Alonso Garay <br />
-      Descripcion: Estudiante en Make It Real <br />
-      Imagen: <br />
-      Lista 3 aprendizajes: <br />
-      &nbsp;&nbsp;- useContext, useState, useEffect <br />
-      &nbsp;&nbsp;- Routes <br />
-      &nbsp;&nbsp;- Repaso para configurar el proyecto
-    </Info>
-  );
+  return <About />;
 };
 export default App;

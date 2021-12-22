@@ -31,8 +31,12 @@ const Header = () => {
         <Texto>Fake Store Garay</Texto>
       </Logo>
       <Links>
-        <Link to="/">Home</Link>
-        <Link to="about">About</Link>
+        <Link className="nav" to="/">
+          Home
+        </Link>
+        <Link className="nav" to="about">
+          About
+        </Link>
       </Links>
     </Container>
   );

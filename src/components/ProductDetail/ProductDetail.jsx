@@ -3,9 +3,28 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ProductCard = styled.div`
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 900px;
+  padding: 1em;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 20px;
+`;
+
 const Img = styled.img`
-  width: 110px;
-  height: 110px;
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  max-height: 500px;
 `;
 
 const Title = styled.h5`
@@ -14,7 +33,6 @@ const Title = styled.h5`
 
 const ProductDetail = () => {
   const [product, setProduct] = useState([]);
-
   const { id } = useParams();
 
   const getProduct = async () => {
@@ -29,12 +47,14 @@ const ProductDetail = () => {
   }, []);
 
   return (
-    <>
-      <Img src={product.image} />
-      <Title>
-        Id: {product.id} | Producto: {product.title}
-      </Title>
-    </>
+    <Container>
+      <ProductCard>
+        <Img src={product.image} />
+        <Title>
+          Id: {product.id} | Producto: {product.title}
+        </Title>
+      </ProductCard>
+    </Container>
   );
 };
 
