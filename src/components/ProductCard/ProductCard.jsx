@@ -26,9 +26,15 @@ const SingleProduct = styled.div`
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 20px;
-  width: 28%;
+  width: 85%;
   margin: 10px auto;
   padding: 15px;
+  @media screen and (min-width: 600px) {
+    width: 43%;
+  }
+  @media screen and (min-width: 769px) {
+    width: 28%;
+  }
 `;
 
 const Img = styled.img`
