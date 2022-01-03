@@ -29,7 +29,7 @@ Made by AlonsoGaray
 [Fake Store Agaray](https://mir-assesment-agaray.netlify.app/)
 ![alt text](https://raw.githubusercontent.com/AlonsoGaray/MIR-Assesment-I/main/src/img/Project.png)
 
-This project was our first assesment from Make It Real bootcamp. The goal that we needed to achieve vas to render products using [fake store api](https://fakestoreapi.com/), adding a random timer to each displayed product, then after the timer is complete, make the product deatil button unavailable.
+This project was our first assesment from Make It Real bootcamp. The goal that we needed to achieve was to render products using [fake store api](https://fakestoreapi.com/), adding a random timer to each displayed product, then after the timer is complete, make the product deatil button unavailable.
 
 ### Built With
 
